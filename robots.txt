@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://pharmacynearby.github.io/sitemap.xml

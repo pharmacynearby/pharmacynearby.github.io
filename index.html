@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pharmacy Near Me — Hours, Services &amp; Savings Tools</title>
+<meta name="description" content="Pharmacy Near Me: free tools to track prescription refills, check medicine expiry, compare generic vs brand prices, plan daily pill times and prepare questions for your pharmacist — plus guides on late-night pharmacies, transfers and safe storage.">
+<meta name="theme-color" content="#134e4a">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<style>
+:root{--d:#134e4a;--d2:#0f766e;--a:#059669;--ad:#047857;--ab:#d1fae5;--bg:#f0fdfa;--card:#fff;--text:#134e4a;--muted:#5f7a76;--border:#d7e8e3;--green:#15803d;--green-bg:#dcfce7;--red:#b91c1c;--red-bg:#fee2e2;--radius:14px;--shadow:0 1px 3px rgba(19,78,74,.08),0 4px 14px rgba(19,78,74,.06)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+.wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+a{color:var(--ad)}
+header{background:var(--d);color:#fff;position:sticky;top:0;z-index:50;box-shadow:0 2px 10px rgba(0,0,0,.25)}
+.header-in{display:flex;align-items:center;gap:14px;padding:13px 16px;max-width:1080px;margin:0 auto;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff;flex:1;min-width:200px}
+.brand .mark{width:38px;height:38px;border-radius:9px;background:var(--a);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:19px;flex:none}
+.brand b{font-size:19px}.brand b span{color:#6ee7b7}
+.brand small{display:block;font-size:11.5px;color:#99f6e4;font-weight:400}
+nav.main-nav{display:flex;gap:4px;flex-wrap:wrap}
+nav.main-nav a{color:#ccfbf1;text-decoration:none;font-size:14px;font-weight:600;padding:8px 11px;border-radius:8px}
+nav.main-nav a:hover{background:var(--d2);color:#fff}
+.hero{background:linear-gradient(135deg,var(--d) 0%,#0f766e 60%,#059669 100%);color:#fff;padding:44px 0 40px}
+.hero h1{font-size:clamp(26px,5vw,40px);line-height:1.2;max-width:760px}
+.hero h1 span{color:#a7f3d0}
+.hero p{color:#ccfbf1;font-size:16px;max-width:720px;margin-top:12px}
+.hero .badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.hero .badge{background:rgba(5,150,105,.18);border:1px solid rgba(110,231,183,.45);color:#d1fae5;font-size:13px;font-weight:600;border-radius:999px;padding:6px 13px}
+.disclaimer{background:#fff7ed;border:1px solid #fed7aa;border-left:4px solid #ea580c;border-radius:10px;padding:12px 14px;font-size:13.5px;color:#7c2d12;margin-top:16px}
+section{padding:34px 0 8px}
+section h2{font-size:24px;margin-bottom:6px}
+.section-sub{color:var(--muted);font-size:15px;max-width:760px;margin-bottom:20px}
+.calc-grid{display:grid;grid-template-columns:1fr;gap:18px}
+@media(min-width:860px){.calc-grid{grid-template-columns:1fr 1fr}.calc-grid .wide{grid-column:1 / -1}}
+.card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px 20px;border-top:4px solid var(--a)}
+.card h3{font-size:18px;margin-bottom:2px}
+.card .tag{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ad)}
+.card .desc{font-size:14px;color:var(--muted);margin:6px 0 16px}
+.field{margin-bottom:12px}
+.field label{display:block;font-size:13.5px;font-weight:600;margin-bottom:6px}
+.field label small{font-weight:400;color:var(--muted)}
+.field input,.field select{width:100%;padding:11px 13px;border:1.5px solid var(--border);border-radius:10px;font-size:15px;font-family:inherit;outline:none;background:#fff;color:var(--text)}
+.field input:focus,.field select:focus{border-color:var(--a);box-shadow:0 0 0 3px rgba(5,150,105,.18)}
+.field-row{display:grid;grid-template-columns:1fr;gap:0 12px}
+@media(min-width:560px){.field-row{grid-template-columns:1fr 1fr}}
+.btn{display:inline-flex;align-items:center;justify-content:center;background:var(--a);color:#fff;border:0;border-radius:10px;padding:12px 22px;font-size:15px;font-weight:800;min-height:46px;cursor:pointer;font-family:inherit}
+.btn:hover{background:var(--ad)}
+.results{display:none;margin-top:16px}.results.show{display:block}
+.results h4{font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(min-width:560px){.stat-grid{grid-template-columns:repeat(3,1fr)}}
+.stat{background:#f8fafc;border:1px solid var(--border);border-radius:12px;padding:12px;text-align:center}
+.stat.hero{background:var(--ab);border-color:#a7f3d0}
+.stat .k{font-size:11.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+.stat .v{font-size:19px;font-weight:800;margin-top:3px;word-break:break-word}
+.stat.hero .v{color:#065f46}
+.stat.wide{grid-column:1 / -1}
+.verdict{margin-top:10px;border-radius:10px;padding:11px 14px;font-size:14px;font-weight:600}
+.verdict.ok{background:var(--green-bg);color:var(--green)}
+.verdict.warn{background:#fef3c7;color:#92400e}
+.verdict.bad{background:var(--red-bg);color:var(--red)}
+.note{font-size:12.5px;color:var(--muted);margin-top:12px}
+.table-wrap{overflow-x:auto;background:#fff;border-radius:var(--radius);box-shadow:var(--shadow)}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:14px}
+th{background:var(--d);color:#fff;text-align:left;padding:11px 12px;font-size:13px}
+td{padding:10px 12px;border-bottom:1px solid var(--border)}
+tr:nth-child(even) td{background:#f8fafc}
+.guide-grid{display:grid;grid-template-columns:1fr;gap:16px}
+@media(min-width:640px){.guide-grid{grid-template-columns:1fr 1fr}}
+@media(min-width:960px){.guide-grid{grid-template-columns:1fr 1fr 1fr}}
+.guide{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);padding:20px 18px;border-left:4px solid var(--a)}
+.guide .g-tag{font-size:12px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--ad)}
+.guide h3{font-size:16.5px;margin:5px 0 7px}.guide p{font-size:14px;color:#334155}
+.guide-link{margin-top:10px;font-size:14px;font-weight:700}.guide-link a{text-decoration:none}.guide-link a:hover{text-decoration:underline}
+.faq{max-width:820px}.faq-item{background:#fff;border-radius:12px;box-shadow:var(--shadow);margin-bottom:10px;overflow:hidden}
+.faq-item button{width:100%;text-align:left;background:none;border:0;padding:16px 18px;font-size:15.5px;font-weight:700;font-family:inherit;color:var(--text);cursor:pointer;display:flex;justify-content:space-between;gap:12px;align-items:center}
+.faq-item button .chev{color:var(--ad);font-size:20px;flex:none}
+.faq-item .answer{display:none;padding:0 18px 16px;font-size:14.5px;color:#334155}
+.faq-item.open .answer{display:block}.faq-item.open .chev{transform:rotate(45deg)}
+.about{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);padding:22px 20px}
+.about p{font-size:14.5px;color:#334155;margin-bottom:10px}
+footer{background:var(--d);color:#99f6e4;margin-top:44px;padding:30px 0 26px}
+footer .cols{display:grid;grid-template-columns:1fr;gap:20px}
+@media(min-width:640px){footer .cols{grid-template-columns:2fr 1fr 1fr}}
+footer h4{color:#fff;font-size:15px;margin-bottom:10px}
+footer p,footer a{font-size:13.5px;color:#99f6e4;text-decoration:none}
+footer a:hover{color:#fff}
+footer ul{list-style:none}footer li{margin-bottom:6px}
+.copy{border-top:1px solid #0f766e;margin-top:22px;padding-top:16px;font-size:12.5px;text-align:center}
+.check label{display:flex;gap:10px;align-items:flex-start;padding:9px 0;border-bottom:1px solid var(--border);font-size:14.5px;cursor:pointer}
+.check input{width:18px;height:18px;margin-top:3px;accent-color:var(--a)}
+.schedule{list-style:none;margin-top:8px}
+.schedule li{background:#f0fdfa;border:1px solid var(--border);border-radius:10px;padding:10px 12px;margin-bottom:8px;font-size:15px}
+</style>
+</head>
+<body>
+<header><div class="header-in"><a class="brand" href="index.html"><span class="mark">Rx</span><span><b>Pharmacy <span>Near Me</span></b><small>pharmacynearby.github.io</small></span></a><nav class="main-nav"><a href="#tools">Tools</a><a href="#reference">Reference Table</a><a href="#guides">Guides</a><a href="#faq">FAQ</a></nav></div></header>
+<main>
+<div class="hero"><div class="wrap"><h1>Find a pharmacy near you — <span>hours, services and savings</span></h1><p>Five free tools to help you stay on top of your medicines: refill dates, expiry checks, generic-vs-brand savings, a daily pill schedule and a checklist of questions to ask your pharmacist.</p><div class="badges"><span class="badge">5 tools</span><span class="badge">6 guides</span><span class="badge">Reference table</span><span class="badge">Free, no sign-up</span></div><div class="disclaimer"><strong>Important:</strong> Informational only — not medical advice. Always consult your pharmacist or doctor about medicines, doses, interactions and symptoms.</div></div></div>
+
+<section id="tools"><div class="wrap"><h2>Tools</h2><p class="section-sub">All tools run locally in your browser. No personal or medical information leaves your device.</p>
+<div class="calc-grid">
+
+<div class="card" id="calc-refill"><p class="tag">Tool 1</p><h3>Prescription Refill Schedule Tracker</h3><p class="desc">Enter your last fill date and days of supply to find your refill date — and the date you should order by.</p>
+<div class="field"><label for="r-last">Last fill date</label><input id="r-last" type="date" value="2026-11-01"></div>
+<div class="field"><label for="r-supply">Days of supply</label><input id="r-supply" type="number" min="1" max="365" value="30"></div>
+<div class="btn-row"><button class="btn" id="btn-refill" type="button">Find my refill date</button></div>
+<div class="results" id="res-refill"><h4>Result</h4><div class="stat-grid"><div class="stat hero"><div class="k">Refill date</div><div class="v" id="r-date">–</div></div><div class="stat"><div class="k">Days left</div><div class="v" id="r-left">–</div></div><div class="stat"><div class="k">Order by</div><div class="v" id="r-order">–</div></div></div><div class="verdict ok" id="r-verdict"></div><p class="note">Example: last filled 2026-11-01 with a 30-day supply → refill on 2026-12-01; order by 2026-11-28.</p></div></div>
+
+<div class="card" id="calc-expiry"><p class="tag">Tool 2</p><h3>Medicine Expiry Checker</h3><p class="desc">Enter the expiry date printed on the pack to see how many days are left — and whether it is safe to keep.</p>
+<div class="field"><label for="e-date">Expiry date (on the pack)</label><input id="e-date" type="date" value="2027-06-30"></div>
+<div class="btn-row"><button class="btn" id="btn-expiry" type="button">Check expiry</button></div>
+<div class="results" id="res-expiry"><h4>Result</h4><div class="stat-grid"><div class="stat hero"><div class="k">Days remaining</div><div class="v" id="e-days">–</div></div><div class="stat"><div class="k">Status</div><div class="v" id="e-status">–</div></div></div><div class="verdict ok" id="e-verdict"></div><p class="note">Never use expired medicine. Ask your pharmacist about safe disposal — do not flush medicines unless the label says so.</p></div></div>
+
+<div class="card" id="calc-price"><p class="tag">Tool 3</p><h3>Generic vs Brand Price Comparison</h3><p class="desc">See how much a generic version could save you per month and per year, compared with the brand-name price.</p>
+<div class="field-row"><div class="field"><label for="p-brand">Brand price per month ($)</label><input id="p-brand" type="number" min="0" step="0.01" value="120"></div><div class="field"><label for="p-generic">Generic price per month ($)</label><input id="p-generic" type="number" min="0" step="0.01" value="35"></div></div>
+<div class="field"><label for="p-months">How many months?</label><input id="p-months" type="number" min="1" max="60" value="12"></div>
+<div class="btn-row"><button class="btn" id="btn-price" type="button">Compare prices</button></div>
+<div class="results" id="res-price"><h4>Result</h4><div class="stat-grid"><div class="stat hero"><div class="k">Saved per month</div><div class="v" id="p-month">–</div></div><div class="stat"><div class="k">Saved per year</div><div class="v" id="p-year">–</div></div><div class="stat"><div class="k">Saved over period</div><div class="v" id="p-total">–</div></div><div class="stat"><div class="k">Generic is</div><div class="v" id="p-pct">–</div></div></div><div class="verdict ok" id="p-verdict"></div><p class="note">Example: $120 brand vs $35 generic → $85 saved per month, $1,020 per year, about 71% cheaper.</p></div></div>
+
+<div class="card" id="calc-schedule"><p class="tag">Tool 4</p><h3>Daily Pill Schedule Planner</h3><p class="desc">Spread your daily doses evenly across your waking hours. Always follow the timing your doctor or pharmacist gave you — this planner is a starting aid, not a prescription.</p>
+<div class="field-row"><div class="field"><label for="s-wake">Wake-up time</label><input id="s-wake" type="time" value="07:00"></div><div class="field"><label for="s-doses">Doses per day</label><input id="s-doses" type="number" min="1" max="6" value="3"></div></div>
+<div class="btn-row"><button class="btn" id="btn-schedule" type="button">Plan my schedule</button></div>
+<div class="results" id="res-schedule"><h4>Your schedule</h4><ul class="schedule" id="s-times"></ul><p class="note" id="s-interval"></p><p class="note">Example: waking at 07:00 with 3 doses a day → 07:00, 15:00 and 23:00 (every 8 hours).</p></div></div>
+
+<div class="card wide" id="calc-checklist"><p class="tag">Tool 5</p><h3>Pharmacy Services Checklist</h3><p class="desc">Tick off each service as you ask about it — a quick way to compare pharmacies and prepare for your visit.</p>
+<div class="check" id="service-list">
+<label><input type="checkbox"> <span><strong>Prescription delivery</strong> — do they deliver to your home, and is there a fee?</span></label>
+<label><input type="checkbox"> <span><strong>Late-night / 24-hour opening</strong> — what are the weekend and holiday hours?</span></label>
+<label><input type="checkbox"> <span><strong>Vaccinations</strong> — flu, COVID-19 and travel vaccines available?</span></label>
+<label><input type="checkbox"> <span><strong>Medication review</strong> — will a pharmacist check all your medicines together?</span></label>
+<label><input type="checkbox"> <span><strong>Generic substitution</strong> — can they offer a lower-cost generic?</span></label>
+<label><input type="checkbox"> <span><strong>Refill reminders</strong> — text, call or app reminders before you run out?</span></label>
+<label><input type="checkbox"> <span><strong>Drive-through / curbside pickup</strong> — can you collect without going inside?</span></label>
+<label><input type="checkbox"> <span><strong>Health screenings</strong> — blood pressure, blood sugar or cholesterol checks?</span></label>
+</div>
+<div class="results show" id="res-checklist"><h4>Your progress</h4><div class="stat-grid"><div class="stat hero"><div class="k">Services asked about</div><div class="v" id="c-count">0 of 8 services</div></div><div class="stat"><div class="k">Coverage</div><div class="v" id="c-pct">0%</div></div></div><div class="verdict ok" id="c-verdict">A good list to take with you. Tick each service off as you ask about it.</div></div></div>
+
+</div></div></section>
+
+<section id="reference"><div class="wrap"><h2>Reference Table: Common Over-the-Counter Medicines</h2><p class="section-sub">General information only — not medical advice. Always read the label and ask your pharmacist before taking any medicine.</p>
+<div class="table-wrap"><table><tr><th>Category</th><th>Typical uses</th><th>Common examples</th><th>Ask your pharmacist about</th></tr>
+<tr><td>Pain relievers</td><td>Headache, muscle pain, fever</td><td>Acetaminophen, ibuprofen</td><td>Dose limits, stomach and liver safety</td></tr>
+<tr><td>Allergy medicines</td><td>Sneezing, itchy eyes, hay fever</td><td>Antihistamines</td><td>Drowsiness, interactions</td></tr>
+<tr><td>Cold and cough</td><td>Cough, congestion, sore throat</td><td>Decongestants, cough syrups</td><td>Blood pressure, sleep effects</td></tr>
+<tr><td>Antacids</td><td>Heartburn, indigestion</td><td>Antacid tablets, liquids</td><td>Timing with other medicines</td></tr>
+<tr><td>Skin care</td><td>Dry skin, minor rashes, sunburn</td><td>Moisturizers, hydrocortisone cream</td><td>How long to use, when to see a doctor</td></tr>
+<tr><td>First aid</td><td>Minor cuts, scrapes, burns</td><td>Antiseptic, bandages, burn gel</td><td>Signs of infection</td></tr>
+<tr><td>Digestive aids</td><td>Constipation, diarrhea, bloating</td><td>Fiber, oral rehydration salts</td><td>Fluids, when to seek care</td></tr>
+<tr><td>Vitamins and supplements</td><td>General nutrition support</td><td>Vitamin D, multivitamins</td><td>Whether you need them, interactions</td></tr>
+</table></div></div></section>
+
+<section id="guides"><div class="wrap"><h2>Guides</h2><p class="section-sub">Practical, plain-English guides to help you use your pharmacy well.</p>
+<div class="guide-grid">
+<div class="guide"><p class="g-tag">Hours</p><h3>How to find a pharmacy open late</h3><p>Late-night and 24-hour pharmacies, holiday hours and what to do when your usual pharmacy is closed.</p><p class="guide-link"><a href="guides/pharmacy-open-late.html">Read the guide &rarr;</a></p></div>
+<div class="guide"><p class="g-tag">Savings</p><h3>Generic vs brand-name drugs</h3><p>What generics are, why they cost less, and when to ask your pharmacist or doctor before switching.</p><p class="guide-link"><a href="guides/generic-vs-brand.html">Read the guide &rarr;</a></p></div>
+<div class="guide"><p class="g-tag">Labels</p><h3>How to read a prescription label</h3><p>Every line on the label explained — dose, timing, warnings and what the numbers mean.</p><p class="guide-link"><a href="guides/read-prescription-label.html">Read the guide &rarr;</a></p></div>
+<div class="guide"><p class="g-tag">Storage</p><h3>Storing medicines safely at home</h3><p>Where to keep medicines, what heat and humidity do to them, and how to keep them away from children.</p><p class="guide-link"><a href="guides/storing-medicines-safely.html">Read the guide &rarr;</a></p></div>
+<div class="guide"><p class="g-tag">Questions</p><h3>What to ask your pharmacist</h3><p>The ten questions that matter most — about side effects, food, other medicines and missed doses.</p><p class="guide-link"><a href="guides/what-to-ask-pharmacist.html">Read the guide &rarr;</a></p></div>
+<div class="guide"><p class="g-tag">Transfers</p><h3>Prescription transfer and delivery guide</h3><p>How to move a prescription to a new pharmacy and how home delivery works, step by step.</p><p class="guide-link"><a href="guides/prescription-transfer-delivery.html">Read the guide &rarr;</a></p></div>
+</div></div></section>
+
+<section id="faq"><div class="wrap"><h2>Frequently Asked Questions</h2><p class="section-sub">Short answers to the questions we hear most.</p>
+<div class="faq">
+<div class="faq-item"><button type="button">Is this medical advice? <span class="chev">+</span></button><div class="answer">No. Everything on this site is general information only. It does not replace advice from your pharmacist or doctor. If you have symptoms, a new medicine or a question about a dose, ask a professional.</div></div>
+<div class="faq-item"><button type="button">Can I take a generic instead of the brand? <span class="chev">+</span></button><div class="answer">Often yes — generics contain the same active ingredient — but not always. Some medicines need the exact brand, and some people react differently. Always ask your pharmacist or doctor before switching.</div></div>
+<div class="faq-item"><button type="button">What should I do with expired medicines? <span class="chev">+</span></button><div class="answer">Do not use them. Many pharmacies run a take-back or disposal program. Do not flush medicines unless the label specifically says to.</div></div>
+<div class="faq-item"><button type="button">How do I transfer a prescription to another pharmacy? <span class="chev">+</span></button><div class="answer">Ask the new pharmacy to request the transfer — they usually handle it for you. You will need the medicine name, the old pharmacy's name and your details. See our transfer guide for the full steps.</div></div>
+<div class="faq-item"><button type="button">Do I need an appointment for a vaccination at a pharmacy? <span class="chev">+</span></button><div class="answer">It depends on the pharmacy and the vaccine. Many offer walk-in flu shots, while others ask you to book ahead. Call first, especially during flu season.</div></div>
+</div></div></section>
+
+<section><div class="wrap"><div class="about"><h2>About Pharmacy Near Me</h2><p>Pharmacy Near Me is an independent information site. We build free, practical tools to help people manage their medicines — refill dates, expiry checks, price comparisons and questions worth asking at the counter.</p><p><strong>Disclaimer:</strong> Informational only — not medical advice. Always consult your pharmacist or doctor about medicines, doses, interactions and symptoms.</p></div></div></section>
+</main>
+<footer><div class="wrap"><div class="cols"><div><h4>Pharmacy Near Me</h4><p>Find a pharmacy near you — hours, services and savings. Informational only — not medical advice. Always consult your pharmacist or doctor about medicines, doses, interactions and symptoms.</p><p style="margin-top:8px">pharmacynearby.github.io</p></div><div><h4>Tools</h4><ul><li><a href="#calc-refill">Refill Schedule Tracker</a></li><li><a href="#calc-expiry">Medicine Expiry Checker</a></li><li><a href="#calc-price">Generic vs Brand Comparison</a></li><li><a href="#calc-schedule">Daily Pill Schedule Planner</a></li><li><a href="#calc-checklist">Pharmacy Services Checklist</a></li></ul></div><div><h4>Guides</h4><ul><li><a href="guides/pharmacy-open-late.html">How to find a pharmacy open late</a></li><li><a href="guides/generic-vs-brand.html">Generic vs brand-name drugs</a></li><li><a href="guides/read-prescription-label.html">How to read a prescription label</a></li><li><a href="guides/storing-medicines-safely.html">Storing medicines safely at home</a></li><li><a href="guides/what-to-ask-pharmacist.html">What to ask your pharmacist</a></li><li><a href="guides/prescription-transfer-delivery.html">Prescription transfer and delivery guide</a></li></ul></div></div><div class="copy">© 2026 Pharmacy Near Me · Informational only — not medical advice. Always consult your pharmacist or doctor about medicines, doses, interactions and symptoms.</div></div></footer>
+<script>
+// Pure functions (testable in Node). Dates are ISO yyyy-mm-dd strings.
+function addDays(iso, n){ var d=new Date(iso+'T00:00:00'); d.setDate(d.getDate()+n); return d.toISOString().slice(0,10); }
+function daysBetween(a,b){ return Math.round((new Date(b+'T00:00:00')-new Date(a+'T00:00:00'))/86400000); }
+function calcRefill(lastFill, daysSupply, today){
+  var refillDate = addDays(lastFill, daysSupply);
+  var daysLeft = daysBetween(today, refillDate);
+  var orderBy = addDays(refillDate, -3);
+  return {refillDate:refillDate, daysLeft:daysLeft, orderBy:orderBy, status: daysLeft<0?'overdue':daysLeft<=3?'refill soon':'ok'};
+}
+function calcExpiry(expiry, today){
+  var days = daysBetween(today, expiry);
+  return {days:days, status: days<0?'expired':days<=30?'expiring soon':days<=90?'check soon':'ok'};
+}
+function calcPrice(brand, generic, months){
+  var perMonth = brand-generic;
+  var pct = brand>0 ? Math.round((brand-generic)/brand*100) : 0;
+  return {perMonth:+perMonth.toFixed(2), perYear:+((brand-generic)*12).toFixed(2), overMonths:+((brand-generic)*months).toFixed(2), pct:pct};
+}
+function calcSchedule(wake, doses){
+  // doses spread across waking hours (wake .. wake+16h), first dose at wake time
+  var parts = wake.split(':'); var start = (+parts[0])*60 + (+parts[1]);
+  var interval = doses>1 ? Math.round(16*60/(doses)) : 0;
+  // simpler: evenly spaced over 16 waking hours, first at wake
+  var times=[];
+  for(var i=0;i<doses;i++){ var m=start + (doses>1 ? Math.round(i*16*60/(doses-1)) : 0); m=m%1440; var h=Math.floor(m/60), mm=m%60; times.push(String(h).padStart(2,'0')+':'+String(mm).padStart(2,'0')); }
+  return {times:times, intervalHours: doses>1? +(16/(doses-1)).toFixed(1):0};
+}
+function calcChecklist(checked, total){
+  var pct = total? Math.round(checked/total*100):0;
+  return {checked:checked, total:total, pct:pct};
+}
+if (typeof document !== 'undefined') {
+  document.addEventListener('DOMContentLoaded', function(){
+    var $=function(id){return document.getElementById(id);};
+    function show(id){var el=$(id); if(el) el.classList.add('show');}
+    function set(id,txt){var el=$(id); if(el) el.textContent=txt;}
+    function money(n){return '$'+Number(n).toFixed(2);}
+    function todayISO(){return new Date().toISOString().slice(0,10);}
+    var b1=$('btn-refill'); if(b1) b1.addEventListener('click',function(){
+      var r=calcRefill($('r-last').value, +$('r-supply').value, todayISO());
+      set('r-date', r.refillDate); set('r-left', r.daysLeft+' days'); set('r-order', r.orderBy);
+      var v=$('r-verdict');
+      if(v){ v.textContent = r.status==='overdue'?'Your refill date has passed — contact your pharmacy today.':r.status==='refill soon'?'Time to refill — order by '+r.orderBy+' so you do not run out.':'You are covered. Order by '+r.orderBy+' to stay ahead.';
+        v.className='verdict '+(r.status==='overdue'?'bad':r.status==='refill soon'?'warn':'ok'); }
+      show('res-refill');});
+    var b2=$('btn-expiry'); if(b2) b2.addEventListener('click',function(){
+      var r=calcExpiry($('e-date').value, todayISO());
+      set('e-days', r.days+' days'); set('e-status', r.status);
+      var v=$('e-verdict');
+      if(v){ v.textContent = r.status==='expired'?'Expired — do not use this medicine. Ask your pharmacist how to dispose of it safely.':r.status==='expiring soon'?'Expiring within 30 days — ask your pharmacist about a replacement.':'Still in date. Check again in a few weeks.';
+        v.className='verdict '+(r.status==='expired'?'bad':r.status==='expiring soon'?'warn':'ok'); }
+      show('res-expiry');});
+    var b3=$('btn-price'); if(b3) b3.addEventListener('click',function(){
+      var r=calcPrice(+$('p-brand').value, +$('p-generic').value, +$('p-months').value);
+      set('p-month', money(r.perMonth)); set('p-year', money(r.perYear)); set('p-total', money(r.overMonths)); set('p-pct', r.pct+'% cheaper');
+      set('p-verdict','The generic costs '+r.pct+'% less than the brand in this example. Ask your pharmacist whether a generic is suitable for you — never switch without checking.');
+      show('res-price');});
+    var b4=$('btn-schedule'); if(b4) b4.addEventListener('click',function(){
+      var r=calcSchedule($('s-wake').value, +$('s-doses').value);
+      var list=$('s-times'); if(list){ list.innerHTML=''; r.times.forEach(function(t,i){ var li=document.createElement('li'); li.textContent='Dose '+(i+1)+' — '+t; list.appendChild(li); }); }
+      set('s-interval', r.intervalHours? ('About every '+r.intervalHours+' hours during waking hours') : 'Once a day — take it at the same time every day.');
+      show('res-schedule');});
+    var boxes=document.querySelectorAll('#service-list input[type=checkbox]');
+    function updCheck(){
+      var c=0; boxes.forEach(function(cb){ if(cb.checked) c++; });
+      var r=calcChecklist(c, boxes.length);
+      set('c-count', r.checked+' of '+r.total+' services'); set('c-pct', r.pct+'%');
+      set('c-verdict', r.pct===100?'You have covered every service on the list — great preparation for your visit.':r.pct>=50?'Good start — ask about the remaining services at your next visit.':'A good list to take with you. Tick each service off as you ask about it.');
+      show('res-checklist');}
+    boxes.forEach(function(cb){cb.addEventListener('change',updCheck);});
+    document.querySelectorAll('.faq-item button').forEach(function(btn){btn.addEventListener('click',function(){btn.parentElement.classList.toggle('open');});});
+  });
+}
+</script>
+</body>
+</html>
